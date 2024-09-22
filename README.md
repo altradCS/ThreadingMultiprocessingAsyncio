@@ -38,3 +38,18 @@ Part 3: Async IO with Non-blocking I/O-bound Tasks
        Use Async IO for writing files:
         1. Write the prime numbers calculated in Part 1 to multiple files asynchronously.
         2. Ensure the program doesn’t block while writing to files.
+
+Requirements:
+Modularize (Functions): split the logic for multiprocessing, threading, and async IO into different modules and call them from a main.py file.
+
+Project Structure:
+project/
+│
+├── multiprocessing_task.py
+├── threading_task.py
+├── async_task.py
+├── generate_numbers.py
+└── main.py
+
+Lab Submission:
+Clone this project, do the necessary, then push it up to github.
