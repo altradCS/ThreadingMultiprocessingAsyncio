@@ -12,10 +12,12 @@ import time
 
 def simulate_io_task(file_name, duration):
   # Simulate I/O-bound task by downloading a file or processing the data
-  print(f"Downloading {file_name}...")
+  with open(file_name, "r") as f:
+    data = f.read()
+    # Process the data
+    print(f"Processed {file_name}: {data[:10]}...")  
   time.sleep(duration)
-  print(f"{file_name} downloaded.")
-  
+  print(f"{file_name} completed.")
 
 def run_io_tasks():
   files = ["numbers1.txt", "numbers2.txt", "numbers3.txt"]
@@ -31,3 +33,5 @@ def run_io_tasks():
   # Wait for all threads to finish
   for thread in threads:
     thread.join()
+    
+  print("I/O tasks completed.")
