@@ -10,7 +10,6 @@
 #        Create a function that reads the file, divides the data into chunks, and uses the multiprocessing.Pool to calculate whether each number is prime.
 #        Use the is_prime function to check if a number is prime.
 
-
 import multiprocessing
 
 def is_prime(n):
