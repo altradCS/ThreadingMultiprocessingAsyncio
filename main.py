@@ -18,7 +18,6 @@ def main():
     print("Running multiprocessing task...")
     primes = multiprocessing_task.find_primes_in_range(numbers, chunk_size = len(numbers)//multiprocessing.cpu_count())
     print(f"Prime numbers found: {primes}")
-    print(len(primes))
 
     # Step 4: Run threading task to simulate I/O
     print("Running threading I/O tasks...")
