@@ -6,7 +6,6 @@
 #         1. Write the prime numbers calculated in Part 1 to multiple files asynchronously.
 #         2. Ensure the program doesn’t block while writing to files.
 
-
 import asyncio
 
 async def async_write_to_file(filename, data, duration):
