@@ -28,5 +28,6 @@ def main():
     print("Running async I/O tasks...")
     asyncio.run(async_task.run_async_tasks(primes))
 
+
 if __name__ == "__main__":
     main()
