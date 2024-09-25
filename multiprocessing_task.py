@@ -1,5 +1,6 @@
 import multiprocessing
 
+
 # Function to check if a number is prime
 def is_prime(n):
     if n < 2:
@@ -18,5 +19,5 @@ def find_primes_in_range(numbers, chunk_size):
     pool = multiprocessing.Pool()
     primes_in_chunks =pool.map(check_prime_chunk, chunks)
     pool.close()
-    primes = [prime for chunk_primes in primes_in_chunks for prime in chunk_primes]
-    return primes
+    
+    return primes_in_chunks
