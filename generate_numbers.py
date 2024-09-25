@@ -1,9 +1,10 @@
 import random
 
-def generate_numbers_file(filename, num_numbers, min_value, max_value):
-    """Generates a file with random numbers."""
-    with open(filename, "w") as f:
-        for _ in range(num_numbers):
-            number = random.randint(min_value, max_value)
-            f.write(f"{number}\n")
-    print(f"File '{filename}' with {num_numbers} random numbers generated.")
+def create_file_with_random_numbers(filename, quantity, min_val, max_val):
+    """Creates a file containing randomly generated numbers."""
+    path = f'ThreadingMultiprocessingAsyncio/{filename}'  # This ensures the file is saved in the same directory when running main.py
+    with open(path, "w") as file:
+        for _ in range(quantity):
+            number = random.randint(min_val, max_val)
+            file.write(f"{number}\n")
+    print(f"Generated '{filename}' with {quantity} random numbers.")

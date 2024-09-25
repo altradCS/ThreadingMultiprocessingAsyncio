@@ -1,30 +1,31 @@
 import multiprocessing_task
+import multiprocessing
 import threading_task
 import async_task
 import generate_numbers
 
 def main():
-    # Step 1: Generate numbers file
-    print("Generating numbers.txt file...")
-    generate_numbers.generate_numbers_file("numbers.txt", 10000, 100000, 1000000)
+    # Step 1: Generate a file with random numbers
+    print("Creating the numbers.txt file...")
+    generate_numbers.create_file_with_random_numbers("numbers.txt", 10000, 100000, 1000000)
     
-    # Step 2: Read numbers from file
-    with open("numbers.txt", "r") as f:
-        numbers = [int(line.strip()) for line in f.readlines()]
+    # Step 2: Read the generated numbers from the file
+    with open("ThreadingMultiprocessingAsyncio/numbers.txt", "r") as file:
+        numbers = [int(line.strip()) for line in file.readlines()]
 
-    # Step 3: Run multiprocessing task to find primes
-    print("Running multiprocessing task...")
-    primes = multiprocessing_task.find_primes_in_range(numbers, chunk_size=len(numbers)//multiprocessing.cpu_count())
-    print(f"Prime numbers found: {primes}")
+    # Step 3: Perform multiprocessing to find prime numbers
+    print("\nExecuting multiprocessing task to find prime numbers...")
+    primes = multiprocessing_task.find_primes_in_chunks(numbers, chunk_size=len(numbers) // multiprocessing.cpu_count())
+    print(f"Identified prime numbers: {primes}")
 
-    # Step 4: Run threading task to simulate I/O
-    print("Running threading I/O tasks...")
-    threading_task.run_io_tasks()
+    # Step 4: Execute threading tasks to simulate I/O operations
+    print("\nExecuting threading I/O tasks...")
+    threading_task.execute_io_tasks()
 
-    # Step 5: Run async tasks
-    print("Running async I/O tasks...")
+    # Step 5: Execute asynchronous tasks
+    print("Executing asynchronous I/O tasks...")
     import asyncio
-    asyncio.run(async_task.run_async_tasks())
+    asyncio.run(async_task.execute_async_tasks(primes))
 
 if __name__ == "__main__":
     main()
