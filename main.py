@@ -4,8 +4,14 @@ import threading_task
 import async_task
 
 def main():
-    with open("numbers.txt", "r") as f:
-        numbers = [int(line.strip()) for line in f.readlines()]
+    #get file from github
+    threading_task.run_io_tasks(files=["https://raw.githubusercontent.com/S0KPiseth/Class/refs/heads/main/numbers.txt",])
+    try:
+        with open("numbers.txt", "r") as f:
+            numbers = [int(line.strip()) for line in f.readlines()]
+    except FileNotFoundError:
+        print("File not found.")
+        return
 
 
     # Step 3: Run multiprocessing task to find primes
@@ -19,8 +25,12 @@ def main():
 
     # Step 4: Run threading task to simulate I/O
     # Note: this will download files multiple files concurrently
+    files = [
+        "https://raw.githubusercontent.com/S0KPiseth/4k-youtube-downloader-with-UI/refs/heads/main/functions.py",
+        "https://raw.githubusercontent.com/S0KPiseth/MultiTimer/refs/heads/main/UI.py",
+    ]
     print("Running threading I/O tasks...")
-    threading_task.run_io_tasks()
+    threading_task.run_io_tasks(files=files)
 
     # Step 5: Run async tasks
     # Note: this will write prime numbers obtain from multiprocessing and write the answer to files concurrently

@@ -14,11 +14,7 @@ def simulate_io_task(file_name):
     except Exception as e:
         return str(e)
 
-def run_io_tasks():
-    files = [
-        "https://raw.githubusercontent.com/S0KPiseth/4k-youtube-downloader-with-UI/refs/heads/main/functions.py",
-        "https://raw.githubusercontent.com/S0KPiseth/MultiTimer/refs/heads/main/UI.py",
-    ]
+def run_io_tasks(files):
     threads = []
     for file in files:
         t = threading.Thread(target=simulate_io_task, args=(file,))
