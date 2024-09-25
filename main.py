@@ -1,30 +1,20 @@
-import multiprocessing_task
-import threading_task
-import async_task
-import generate_numbers
+
+from multiprocessing_task import multiprocessing_prime
+from threading_task import threading_download
+from async_task import async_write_primes
+import asyncio
+
 
 def main():
-    # Step 1: Generate numbers file
-    print("Generating numbers.txt file...")
-    generate_numbers.generate_numbers_file("numbers.txt", 10000, 100000, 1000000)
-    
-    # Step 2: Read numbers from file
-    with open("numbers.txt", "r") as f:
-        numbers = [int(line.strip()) for line in f.readlines()]
+    print("Running Multiprocessing Task...")
+    primes = multiprocessing_prime()  # Run multiprocessing task to get prime numbers
 
-    # Step 3: Run multiprocessing task to find primes
-    print("Running multiprocessing task...")
-    primes = multiprocessing_task.find_primes_in_range(numbers, chunk_size=len(numbers)//multiprocessing.cpu_count())
-    print(f"Prime numbers found: {primes}")
+    print("\nRunning Threading Task...")
+    threading_download()  # Run threading task to simulate file downloads
 
-    # Step 4: Run threading task to simulate I/O
-    print("Running threading I/O tasks...")
-    threading_task.run_io_tasks()
+    print("\nRunning Async IO Task...")
+    asyncio.run(async_write_primes(primes))  # Run async IO task to write prime numbers to files
 
-    # Step 5: Run async tasks
-    print("Running async I/O tasks...")
-    import asyncio
-    asyncio.run(async_task.run_async_tasks())
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
