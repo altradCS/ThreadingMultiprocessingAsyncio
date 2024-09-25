@@ -2,6 +2,9 @@ import multiprocessing_task
 import threading_task
 import async_task
 import generate_numbers
+import multiprocessing
+import requests
+import asyncio
 
 def main():
     # Step 1: Generate numbers file
@@ -10,7 +13,7 @@ def main():
     
     # Step 2: Read numbers from file
     with open("numbers.txt", "r") as f:
-        numbers = [int(line.strip()) for line in f.readlines()]
+        numbers = [int(line.strip()) for line in f if line.strip()]
 
     # Step 3: Run multiprocessing task to find primes
     print("Running multiprocessing task...")
@@ -23,8 +26,7 @@ def main():
 
     # Step 5: Run async tasks
     print("Running async I/O tasks...")
-    import asyncio
-    asyncio.run(async_task.run_async_tasks())
+    asyncio.run(async_task.run_async_tasks(primes))
 
 if __name__ == "__main__":
     main()
